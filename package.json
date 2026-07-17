@@ -1,0 +1,23 @@
+{
+  "name": "cyberbara-cli",
+  "version": "0.1.0",
+  "description": "CLI for CyberBara image, video, audio, and music generation",
+  "license": "MIT",
+  "homepage": "https://cyberbara.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZeroLu/cyberbara-cli"
+  },
+  "bin": {
+    "cyberbara": "./bin/cyberbara.js"
+  },
+  "files": [
+    "bin/cyberbara.js",
+    "src/cyberbara_cli",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
