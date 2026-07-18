@@ -6,10 +6,10 @@
   "homepage": "https://cyberbara.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZeroLu/cyberbara-cli"
+    "url": "git+https://github.com/ZeroLu/cyberbara-cli.git"
   },
   "bin": {
-    "cyberbara": "./bin/cyberbara.js"
+    "cyberbara": "bin/cyberbara.js"
   },
   "files": [
     "bin/cyberbara.js",
