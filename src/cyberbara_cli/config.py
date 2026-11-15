@@ -44,6 +44,12 @@ def save_cached_api_key(api_key: str) -> None:
     except OSError:
         pass
 
+    API_KEY_STORE_PATH.write_text(f"{key}\n", encoding="utf-8")
+    try:
+        API_KEY_STORE_PATH.chmod(0o600)
+    except OSError:
+        pass
+
 
 def clear_cached_api_key() -> bool:
     if not API_KEY_STORE_PATH.exists():
@@ -72,12 +78,6 @@ def current_api_key_info(cli_api_key: str | None = None) -> dict[str, Any]:
     raise SystemExit(
         f"API key not found. Pass --api-key, set {API_KEY_ENV_VAR}, or run `cyberbara auth configure`."
     )
-
-    API_KEY_STORE_PATH.write_text(f"{key}\n", encoding="utf-8")
-    try:
-        API_KEY_STORE_PATH.chmod(0o600)
-    except OSError:
-        pass
 
 
 def _prompt_and_cache_api_key() -> str:
@@ -147,7 +147,7 @@ def setup_api_key(
         source = "interactive_prompt"
     else:
         raise SystemExit(
-            "No API key provided. Use `setup-api-key <key>` or `setup-api-key --from-env`."
+            "No API key provided. Use `cyberbara auth configure --api-key <key>` or `cyberbara auth configure --from-env`."
         )
 
     save_cached_api_key(key)

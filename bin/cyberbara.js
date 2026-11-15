@@ -7,8 +7,6 @@ const { spawn } = require("node:child_process");
 const packageRoot = path.resolve(__dirname, "..");
 const pythonPath = path.join(packageRoot, "src");
 const script = [
-  "import sys",
-  "sys.path.insert(0, r'" + pythonPath.replace(/\\/g, "\\\\") + "')",
   "from cyberbara_cli.cli import main",
   "main()"
 ].join("; ");
