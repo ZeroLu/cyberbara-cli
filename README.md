@@ -36,19 +36,26 @@ Notes:
 
 ## Quick Start
 
-Configure your API key once:
+Create an account and get an [API key](https://cyberbara.com/settings/apikeys?utm_source=github&utm_medium=referral&utm_campaign=cyberbara-cli&utm_content=quick-start). Then configure it once:
 
 ```bash
 cyberbara auth configure --api-key "YOUR_API_KEY"
 ```
 
-Check the saved key:
+Check the saved key in a new terminal process:
 
 ```bash
 cyberbara auth whoami
 ```
 
-Generate across media types:
+Check current models and balance before generating:
+
+```bash
+cyberbara models list --media-type image
+cyberbara account balance
+```
+
+Generate across media types (each command quotes credits and asks for confirmation):
 
 ```bash
 cyberbara image generate "A cinematic product shot of a silver watch" \
@@ -273,5 +280,22 @@ These flags apply to most generation commands:
 ## Related Resources
 
 - [CyberBara API](https://cyberbara.com/api)
-- [CyberBara API Reference](https://cyberbara.com/docs/api-reference?__cyberbara_session=1)
+- [CyberBara API Reference](https://cyberbara.com/docs/api-reference)
 - [Ultimate AI Media Generator Skill](https://github.com/ZeroLu/Ultimate-AI-Media-Generator-Skill)
+
+## Troubleshooting your first run
+
+- `python3` not found after npm install: install Python 3.10 or newer, then run `cyberbara --help` again. The npm launcher uses Python.
+- Key missing after configuration: verify with `cyberbara auth whoami` in a new process. If using version 0.1.0, set `CYBERBARA_API_KEY` as a workaround; that version can report a saved key without writing it.
+- HTTP 401/403: check the key, account access, and any network restrictions. Do not paste your key into an issue.
+- Model rejected: list current models for that media type instead of assuming an example model is still available.
+- Non-interactive generation stops after quoting: run interactively to review the quote, or use `--yes` after accepting the cost.
+- Task times out: retain its task ID and use `cyberbara task get <task_id>` before submitting another paid task.
+
+A quote is an estimate in credits, not a measured currency cost. Use `cyberbara account usage` and billing records to check actual consumption.
+
+For maintainers, offline first-run regression checks require no API key or generation spend:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
